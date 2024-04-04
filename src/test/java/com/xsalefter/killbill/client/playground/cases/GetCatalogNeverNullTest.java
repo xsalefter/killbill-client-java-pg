@@ -1,5 +1,8 @@
 package com.xsalefter.killbill.client.playground.cases;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.xsalefter.killbill.client.playground.Playground;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
@@ -51,10 +54,12 @@ public class GetCatalogNeverNullTest extends Playground {
     }
 
     @Test
-    void getCatalogJSON() throws KillBillClientException {
-        final DateTime catalogDate = DateTime.parse("2000-01-01T00:00:00+00:00");
+    void getCatalogJSON() throws KillBillClientException, JsonProcessingException {
+        final DateTime catalogDate = DateTime.parse("0000-01-01");
         final CatalogApi api = new CatalogApi(newHttpClient());
         final Catalogs catalogs = api.getCatalogJson(catalogDate, null, requestOptions());
-        System.out.println("catalog length = " + catalogs.size());
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JodaModule());
+        System.out.println(objectMapper.writeValueAsString(catalogs));
     }
 }
