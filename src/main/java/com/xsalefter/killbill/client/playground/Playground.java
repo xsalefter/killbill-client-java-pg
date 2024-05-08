@@ -57,6 +57,24 @@ public abstract class Playground {
                 defaultReadTimeoutSec * 1000);
     }
 
+    protected KillBillHttpClient newHttpClient(String apiKey, String apiSecret) {
+        this.serverHost = "localhost";
+        this.serverPort = 8080;
+        this.apiKey = apiKey;
+        this.apiSecret = apiSecret;
+        String kbServerUrl = String.format("http://%s:%d", this.serverHost, this.serverPort);
+        return new KillBillHttpClient(
+                kbServerUrl,
+                username,
+                password,
+                this.apiKey,
+                this.serverHost,
+                proxyHost,
+                proxyPort,
+                defaultConnectionTimeoutSec * 1000,
+                defaultReadTimeoutSec * 1000);
+    }
+
     protected String getXmlContent(String resourceSubPath) {
         final Path filePath = Path.of("src/test/resources", resourceSubPath);
         try {
