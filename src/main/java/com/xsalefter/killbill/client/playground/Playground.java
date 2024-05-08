@@ -45,7 +45,6 @@ public abstract class Playground {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         String kbServerUrl = String.format("http://%s:%d", this.serverHost, this.serverPort);
-        System.out.println(kbServerUrl);
         return new KillBillHttpClient(
                 kbServerUrl,
                 username,

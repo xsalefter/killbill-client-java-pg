@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- Verbatim copy of WaterUtility-v1.xml -->
+
+<catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://docs.killbill.io/latest/catalog.xsd">
+
+    <effectiveDate>{effectiveDate}</effectiveDate>
+    <catalogName>CorrectBillingPeriodLocationTest</catalogName>
+
+    <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
+
+    <currencies>
+        <currency>USD</currency>
+        <currency>GBP</currency>
+        <currency>EUR</currency>
+    </currencies>
+
+    <units>
+        <unit name="liter"/>
+    </units>
+
+    <products>
+        <product name="Water">
+            <category>BASE</category>
+        </product>
+        <product name="Air">
+            <category>BASE</category>
+        </product>
+    </products>
+
+    <rules>
+        <changePolicy>
+            <changePolicyCase>
+                <policy>IMMEDIATE</policy>
+            </changePolicyCase>
+        </changePolicy>
+        <cancelPolicy>
+            <cancelPolicyCase>
+                <policy>IMMEDIATE</policy>
+            </cancelPolicyCase>
+        </cancelPolicy>
+    </rules>
+
+    <plans>
+
+        <!-- pure recurring plan   -->
+        <plan name="water-insurance-monthly">
+            <product>Water</product>
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                </duration>
+                <fixed>
+                    <fixedPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>100</value>
+                        </price>
+                    </fixedPrice>
+                </fixed>
+                <recurring>
+                    <billingPeriod>MONTHLY</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>49.95</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+            </finalPhase>
+        </plan>
+
+        <!-- pure usage plan   -->
+        <plan name="water-monthly">
+            <product>Water</product>
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                </duration>
+                <usages>
+                    <usage name="water-monthly-usage" billingMode="IN_ARREAR" usageType="CONSUMABLE" tierBlockPolicy="ALL_TIERS">
+                        <billingPeriod>MONTHLY</billingPeriod>
+                        <tiers>
+                            <tier>
+                                <blocks>
+                                    <tieredBlock>
+                                        <unit>liter</unit>
+                                        <size>1</size>
+                                        <prices>
+                                            <price>
+                                                <currency>USD</currency>
+                                                <value>1.50</value>
+                                            </price>
+                                        </prices>
+                                        <max>1000</max>
+                                    </tieredBlock>
+                                </blocks>
+                            </tier>
+                            <tier>
+                                <blocks>
+                                    <tieredBlock>
+                                        <unit>liter</unit>
+                                        <size>1</size>
+                                        <prices>
+                                            <price>
+                                                <currency>USD</currency>
+                                                <value>2.00</value>
+                                            </price>
+                                        </prices>
+                                        <max>-1</max>
+                                    </tieredBlock>
+                                </blocks>
+                            </tier>
+                        </tiers>
+                    </usage>
+                </usages>
+            </finalPhase>
+        </plan>
+    </plans>
+    <priceLists>
+        <defaultPriceList name="DEFAULT">
+            <plans>
+                <plan>water-insurance-monthly</plan>
+                <plan>water-monthly</plan>
+            </plans>
+        </defaultPriceList>
+    </priceLists>
+</catalog>

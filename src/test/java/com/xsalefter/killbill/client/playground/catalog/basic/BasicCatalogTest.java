@@ -3,6 +3,8 @@ package com.xsalefter.killbill.client.playground.catalog.basic;
 import com.xsalefter.killbill.client.playground.Playground;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
+import org.killbill.billing.catalog.DefaultVersionedCatalog;
+import org.killbill.billing.catalog.StandaloneCatalog;
 import org.killbill.billing.client.KillBillClientException;
 import org.killbill.billing.client.KillBillHttpClient;
 import org.killbill.billing.client.RequestOptions;
