@@ -1,0 +1,65 @@
+<catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://docs.killbill.io/latest/catalog.xsd">
+    <effectiveDate/>
+    <catalogName>ExampleCatalog</catalogName>
+    <recurringBillingMode>IN_ARREAR</recurringBillingMode>
+    <currencies>
+        <currency>USD</currency>
+    </currencies>
+    <units/>
+    <products>
+        <product name="Standard">
+            <category>BASE</category>
+        </product>
+    </products>
+    <rules>
+        <changePolicy>
+            <changePolicyCase>
+                <policy>IMMEDIATE</policy>
+            </changePolicyCase>
+        </changePolicy>
+        <changeAlignment/>
+        <cancelPolicy>
+            <cancelPolicyCase>
+                <policy>IMMEDIATE</policy>
+            </cancelPolicyCase>
+        </cancelPolicy>
+        <createAlignment/>
+        <billingAlignment/>
+        <priceList/>
+    </rules>
+    <plans>
+        <plan name="standard-monthly" prettyName="standard-monthly">
+            <product>Standard</product>
+            <recurringBillingMode>IN_ARREAR</recurringBillingMode>
+            <initialPhases>
+                <phase/>
+            </initialPhases>
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <fixed type="ONE_TIME">
+                    <fixedPrice/>
+                </fixed>
+                <recurring>
+                    <billingPeriod>MONTHLY</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>USD</currency>
+                            <value>24.95</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+            </finalPhase>
+        </plan>
+    </plans>
+    <priceLists>
+        <defaultPriceList name="DEFAULT" prettyName="DEFAULT">
+            <plans>
+                <plan>standard-monthly</plan>
+            </plans>
+        </defaultPriceList>
+    </priceLists>
+</catalog>
