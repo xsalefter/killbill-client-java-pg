@@ -20,115 +20,140 @@
 
     <effectiveDate>2024-05-01T00:00:00+00:00</effectiveDate>
     <catalogName>SpyCarBasic</catalogName>
-
-    <recurringBillingMode>IN_ADVANCE</recurringBillingMode>
-
+    <recurringBillingMode>IN_ARREAR</recurringBillingMode>
     <currencies>
-        <currency>USD</currency>
         <currency>GBP</currency>
+        <currency>USD</currency>
         <currency>EUR</currency>
     </currencies>
-
+    <units/>
     <products>
-        <product name="Standard">
+        <product name="Sports">
             <category>BASE</category>
         </product>
-        <product name="Sports">
+        <product name="Standard">
             <category>BASE</category>
         </product>
         <product name="Super">
             <category>BASE</category>
         </product>
     </products>
-
     <rules>
         <changePolicy>
             <changePolicyCase>
                 <policy>IMMEDIATE</policy>
             </changePolicyCase>
         </changePolicy>
-        <changeAlignment>
-            <changeAlignmentCase>
-                <alignment>START_OF_BUNDLE</alignment>
-            </changeAlignmentCase>
-        </changeAlignment>
+        <changeAlignment/>
         <cancelPolicy>
             <cancelPolicyCase>
                 <policy>IMMEDIATE</policy>
             </cancelPolicyCase>
         </cancelPolicy>
-        <createAlignment>
-            <createAlignmentCase>
-                <alignment>START_OF_BUNDLE</alignment>
-            </createAlignmentCase>
-        </createAlignment>
-        <billingAlignment>
-            <billingAlignmentCase>
-                <alignment>ACCOUNT</alignment>
-            </billingAlignmentCase>
-        </billingAlignment>
-        <priceList>
-            <priceListCase>
-                <toPriceList>DEFAULT</toPriceList>
-            </priceListCase>
-        </priceList>
+        <createAlignment/>
+        <billingAlignment/>
+        <priceList/>
     </rules>
-
     <plans>
-        <plan name="standard-monthly">
-            <product>Standard</product>
+        <plan name="sports-monthly" prettyName="sports-monthly">
+            <product>Sports</product>
+            <recurringBillingMode>IN_ARREAR</recurringBillingMode>
             <initialPhases>
                 <phase type="TRIAL">
                     <duration>
                         <unit>DAYS</unit>
                         <number>30</number>
                     </duration>
-                    <fixed>
-                        <fixedPrice> <!-- empty price implies $0 -->
-                        </fixedPrice>
-
+                    <fixed type="ONE_TIME">
+                        <fixedPrice/>
                     </fixed>
+                    <recurring/>
                 </phase>
             </initialPhases>
             <finalPhase type="EVERGREEN">
                 <duration>
                     <unit>UNLIMITED</unit>
+                    <number>-1</number>
                 </duration>
+                <fixed type="ONE_TIME">
+                    <fixedPrice/>
+                </fixed>
                 <recurring>
                     <billingPeriod>MONTHLY</billingPeriod>
                     <recurringPrice>
                         <price>
                             <currency>GBP</currency>
-                            <value>75.00</value>
+                            <value>375</value>
                         </price>
                         <price>
                             <currency>USD</currency>
-                            <value>100.00</value>
+                            <value>500</value>
                         </price>
                     </recurringPrice>
                 </recurring>
             </finalPhase>
         </plan>
-
-        <plan name="standard-monthly-eur-only">
+        <plan name="standard-monthly" prettyName="standard-monthly">
             <product>Standard</product>
+            <recurringBillingMode>IN_ARREAR</recurringBillingMode>
             <initialPhases>
                 <phase type="TRIAL">
                     <duration>
                         <unit>DAYS</unit>
                         <number>30</number>
                     </duration>
-                    <fixed>
-                        <fixedPrice> <!-- empty price implies $0 -->
-                        </fixedPrice>
-
+                    <fixed type="ONE_TIME">
+                        <fixedPrice/>
                     </fixed>
+                    <recurring/>
                 </phase>
             </initialPhases>
             <finalPhase type="EVERGREEN">
                 <duration>
                     <unit>UNLIMITED</unit>
+                    <number>-1</number>
                 </duration>
+                <fixed type="ONE_TIME">
+                    <fixedPrice/>
+                </fixed>
+                <recurring>
+                    <billingPeriod>MONTHLY</billingPeriod>
+                    <recurringPrice>
+                        <price>
+                            <currency>GBP</currency>
+                            <value>75</value>
+                        </price>
+                        <price>
+                            <currency>USD</currency>
+                            <value>100</value>
+                        </price>
+                    </recurringPrice>
+                </recurring>
+            </finalPhase>
+        </plan>
+        <plan name="standard-monthly-eur-only" prettyName="standard-monthly-eur-only">
+            <product>Standard</product>
+            <recurringBillingMode>IN_ARREAR</recurringBillingMode>
+            <initialPhases>
+                <phase type="TRIAL">
+                    <duration>
+                        <unit>DAYS</unit>
+                        <number>30</number>
+                    </duration>
+                    <fixed type="ONE_TIME">
+                        <fixedPrice/>
+                    </fixed>
+                    <recurring/>
+                </phase>
+            </initialPhases>
+            <finalPhase type="EVERGREEN">
+                <duration>
+                    <unit>UNLIMITED</unit>
+                    <number>-1</number>
+                </duration>
+                <fixed type="ONE_TIME">
+                    <fixedPrice/>
+                </fixed>
                 <recurring>
                     <billingPeriod>MONTHLY</billingPeriod>
                     <recurringPrice>
@@ -140,70 +165,39 @@
                 </recurring>
             </finalPhase>
         </plan>
-
-        <plan name="sports-monthly">
-            <product>Sports</product>
-            <initialPhases>
-                <phase type="TRIAL">
-                    <duration>
-                        <unit>DAYS</unit>
-                        <number>30</number>
-                    </duration>
-                    <fixed>
-                        <fixedPrice> <!-- empty price implies $0 -->
-                        </fixedPrice>
-                    </fixed>
-                </phase>
-            </initialPhases>
-            <finalPhase type="EVERGREEN">
-                <duration>
-                    <unit>UNLIMITED</unit>
-                </duration>
-                <recurring>
-                    <billingPeriod>MONTHLY</billingPeriod>
-                    <recurringPrice>
-                        <price>
-                            <currency>GBP</currency>
-                            <value>375.00</value>
-                        </price>
-                        <price>
-                            <currency>USD</currency>
-                            <value>500.00</value>
-                        </price>
-                    </recurringPrice>
-                </recurring>
-            </finalPhase>
-        </plan>
-
-        <plan name="super-monthly">
+        <plan name="super-monthly" prettyName="super-monthly">
             <product>Super</product>
+            <recurringBillingMode>IN_ARREAR</recurringBillingMode>
             <initialPhases>
                 <phase type="TRIAL">
                     <duration>
                         <unit>DAYS</unit>
                         <number>30</number>
                     </duration>
-                    <fixed>
-                        <fixedPrice> <!-- empty price implies $0 -->
-                        </fixedPrice>
-
+                    <fixed type="ONE_TIME">
+                        <fixedPrice/>
                     </fixed>
+                    <recurring/>
                 </phase>
             </initialPhases>
             <finalPhase type="EVERGREEN">
                 <duration>
                     <unit>UNLIMITED</unit>
+                    <number>-1</number>
                 </duration>
+                <fixed type="ONE_TIME">
+                    <fixedPrice/>
+                </fixed>
                 <recurring>
                     <billingPeriod>MONTHLY</billingPeriod>
                     <recurringPrice>
                         <price>
                             <currency>GBP</currency>
-                            <value>750.00</value>
+                            <value>750</value>
                         </price>
                         <price>
                             <currency>USD</currency>
-                            <value>1000.00</value>
+                            <value>1000</value>
                         </price>
                     </recurringPrice>
                 </recurring>
@@ -211,20 +205,13 @@
         </plan>
     </plans>
     <priceLists>
-        <defaultPriceList name="DEFAULT">
+        <defaultPriceList name="DEFAULT" prettyName="DEFAULT">
             <plans>
-                <plan>standard-monthly</plan>
                 <plan>sports-monthly</plan>
-                <plan>super-monthly</plan>
+                <plan>standard-monthly</plan>
                 <plan>standard-monthly-eur-only</plan>
+                <plan>super-monthly</plan>
             </plans>
         </defaultPriceList>
-        <childPriceList name="NoEuro">
-            <plans>
-                <plan>standard-monthly</plan>
-                <plan>sports-monthly</plan>
-                <plan>super-monthly</plan>
-            </plans>
-        </childPriceList>
     </priceLists>
 </catalog>
