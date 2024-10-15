@@ -50,7 +50,7 @@ public abstract class Playground {
                 username,
                 password,
                 this.apiKey,
-                this.serverHost,
+                this.apiSecret,
                 proxyHost,
                 proxyPort,
                 defaultConnectionTimeoutSec * 1000,
